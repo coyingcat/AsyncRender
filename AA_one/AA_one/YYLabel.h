@@ -11,8 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YYLabel : UIView
 
-@property NSString *text;
-@property UIFont *font;
+@property (nonatomic) NSString *text;
+@property (nonatomic) UIFont *font;
 
 @end
 

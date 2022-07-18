@@ -51,7 +51,7 @@
         CGContextTranslateCTM(context, 0, self.bounds.size.height);
         CGContextScaleCTM(context, 1.0, -1.0);
         }];
-        NSAttributedString* str = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName:_font}];
+        NSAttributedString* str = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName:self->_font}];
         CGContextSetTextPosition(context, 0, font.pointSize);
         CTLineRef line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)str);
         CTLineDraw(line, context);
