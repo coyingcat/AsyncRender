@@ -18,6 +18,7 @@
 		262BAF91288563D700320C76 /* YYSentinel.m in Sources */ = {isa = PBXBuildFile; fileRef = 262BAF8C288563D700320C76 /* YYSentinel.m */; };
 		262BAF92288563D700320C76 /* YYTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 262BAF8E288563D700320C76 /* YYTransaction.m */; };
 		262BAF95288564BD00320C76 /* YYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 262BAF94288564BD00320C76 /* YYLabel.m */; };
+		262BAF972885693900320C76 /* dra.txt in Resources */ = {isa = PBXBuildFile; fileRef = 262BAF962885693900320C76 /* dra.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		262BAF8F288563D700320C76 /* YYSentinel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYSentinel.h; sourceTree = "<group>"; };
 		262BAF93288564BD00320C76 /* YYLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYLabel.h; sourceTree = "<group>"; };
 		262BAF94288564BD00320C76 /* YYLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYLabel.m; sourceTree = "<group>"; };
+		262BAF962885693900320C76 /* dra.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dra.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 		262BAF6F288563A000320C76 /* AA_one */ = {
 			isa = PBXGroup;
 			children = (
+				262BAF962885693900320C76 /* dra.txt */,
 				262BAF89288563D700320C76 /* Layer */,
 				262BAF70288563A000320C76 /* AppDelegate.h */,
 				262BAF71288563A000320C76 /* AppDelegate.m */,
@@ -161,6 +164,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				262BAF972885693900320C76 /* dra.txt in Resources */,
 				262BAF80288563A200320C76 /* LaunchScreen.storyboard in Resources */,
 				262BAF7D288563A200320C76 /* Assets.xcassets in Resources */,
 				262BAF7B288563A000320C76 /* Main.storyboard in Resources */,
