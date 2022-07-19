@@ -65,7 +65,7 @@
         int cnt = (int)array.count;
         CGPoint originsArray[cnt];
         CTFrameGetLineOrigins(pic, CFRangeMake(0, 0), originsArray);
-        CGFloat y_y = 3000 - originsArray[cnt - 1].y;
+        CGFloat y_y = 3000 - originsArray[cnt - 1].y + 200 + 50;
         while (i < cnt) {
             NSLog(@"%f", originsArray[i].y);
             CTLineRef line = (__bridge CTLineRef)(array[i]);
