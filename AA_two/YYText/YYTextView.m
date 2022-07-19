@@ -634,10 +634,10 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     if (self.isFirstResponder || _containerView.isFirstResponder) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             UIMenuController *menu = [UIMenuController sharedMenuController];
-            [menu setTargetRect:CGRectStandardize(rect) inView:_selectionView];
+            [menu setTargetRect:CGRectStandardize(rect) inView:self->_selectionView];
             [menu update];
-            if (!_state.showingMenu || !menu.menuVisible) {
-                _state.showingMenu = YES;
+            if (!self->_state.showingMenu || !menu.menuVisible) {
+                self->_state.showingMenu = YES;
                 [menu setMenuVisible:YES animated:YES];
             }
         });

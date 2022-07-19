@@ -233,13 +233,13 @@ static inline CGRect YYTextEmojiGetGlyphBoundingRectWithFontSize(CGFloat fontSiz
  Get the character set which should rotate in vertical form.
  @return The shared character set.
  */
-NSCharacterSet *YYTextVerticalFormRotateCharacterSet();
+NSCharacterSet *YYTextVerticalFormRotateCharacterSet(void);
 
 /**
  Get the character set which should rotate and move in vertical form.
  @return The shared character set.
  */
-NSCharacterSet *YYTextVerticalFormRotateAndMoveCharacterSet();
+NSCharacterSet *YYTextVerticalFormRotateAndMoveCharacterSet(void);
 
 
 
@@ -555,9 +555,9 @@ static inline CFRange YYTextCFRangeFromNSRange(NSRange range) {
 
 
 /// Returns YES in App Extension.
-BOOL YYTextIsAppExtension();
+BOOL YYTextIsAppExtension(void);
 
 /// Returns nil in App Extension.
-UIApplication * _Nullable YYTextSharedApplication();
+UIApplication * _Nullable YYTextSharedApplication(void);
 
 NS_ASSUME_NONNULL_END

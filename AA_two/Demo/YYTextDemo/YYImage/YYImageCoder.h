@@ -446,7 +446,7 @@ CG_EXTERN CFDataRef _Nullable YYCGImageCreateEncodedData(CGImageRef imageRef, YY
 /**
  Whether WebP is available in YYImage.
  */
-CG_EXTERN BOOL YYImageWebPAvailable();
+CG_EXTERN BOOL YYImageWebPAvailable(void);
 
 /**
  Get a webp image frame count;

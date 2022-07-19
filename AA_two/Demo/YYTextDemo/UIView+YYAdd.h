@@ -51,7 +51,7 @@
 @end
 
 
-double YYDeviceSystemVersion();
+double YYDeviceSystemVersion(void);
 
 #ifndef kSystemVersion
 #define kSystemVersion YYDeviceSystemVersion()
