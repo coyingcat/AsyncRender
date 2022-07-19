@@ -4,6 +4,7 @@
 #import <libkern/OSAtomic.h>
 
 #import <CoreText/CoreText.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 @implementation YYLabel
 
@@ -53,8 +54,14 @@
         }];
         NSAttributedString* str = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName:self->_font}];
         CGContextSetTextPosition(context, 0, font.pointSize);
+        
         CTLineRef line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)str);
         CTLineDraw(line, context);
+        
+        CTFramesetterRef ref = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)str);
+        CGPathRef path = CGPathCreateWithRect(CGRectZero, nil);
+        CTFrameRef pic = CTFramesetterCreateFrame(ref, CFRangeMake(0, 0), path, nil);
+        CTFrameDraw(pic, context);
     };
     
     task.didDisplay = ^(CALayer *layer, BOOL finished) {
