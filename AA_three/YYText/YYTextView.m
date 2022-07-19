@@ -37,9 +37,6 @@ static double _YYDeviceSystemVersion() {
 #define kSystemVersion _YYDeviceSystemVersion()
 #endif
 
-#ifndef kiOS6Later
-#define kiOS6Later (kSystemVersion >= 6)
-#endif
 
 #ifndef kiOS7Later
 #define kiOS7Later (kSystemVersion >= 7)
