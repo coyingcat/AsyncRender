@@ -207,8 +207,8 @@
     YYLabel *label = [YYLabel new];
     label.attributedText = text;
     label.width = self.view.width;
-    label.height = self.view.height - (kiOS7Later ? 64 : 44);
-    label.top = (kiOS7Later ? 64 : 0);
+    label.height = self.view.height - 100;
+    label.top = 100;
     label.textAlignment = NSTextAlignmentCenter;
     label.textVerticalAlignment = YYTextVerticalAlignmentCenter;
     label.numberOfLines = 0;

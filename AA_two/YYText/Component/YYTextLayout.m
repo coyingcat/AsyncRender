@@ -2249,7 +2249,10 @@ static void YYTextDrawRun(YYTextLine *line, CTRunRef run, CGContextRef context, 
         fillColor = YYTextGetCGColor(fillColor);
         NSNumber *strokeWidth = CFDictionaryGetValue(runAttrs, kCTStrokeWidthAttributeName);
         
-        CGContextSaveGState(context); {
+        CGContextSaveGState(context);
+        
+        
+        {
             CGContextSetFillColorWithColor(context, fillColor);
             if (strokeWidth == nil || strokeWidth.floatValue == 0) {
                 CGContextSetTextDrawingMode(context, kCGTextFill);
@@ -2360,7 +2363,10 @@ static void YYTextDrawRun(YYTextLine *line, CTRunRef run, CGContextRef context, 
                 }
             }
             
-        } CGContextRestoreGState(context);
+        }
+        
+        
+        CGContextRestoreGState(context);
     }
 }
 
