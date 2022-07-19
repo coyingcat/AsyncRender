@@ -1097,7 +1097,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
         [attachmentLayers removeAllObjects];
     };
 
-    task.display = ^(CGContextRef context, CGSize size, BOOL (^isCancelled)(void)) {
+    task.displayXxx = ^(CGContextRef context, CGSize size, BOOL (^isCancelled)(void)) {
         if (isCancelled()) return;
         if (text.length == 0) return;
         

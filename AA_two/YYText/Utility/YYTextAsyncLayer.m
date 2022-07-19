@@ -110,7 +110,7 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
 - (void)_displayAsync{
     __strong id<YYTextAsyncLayerDelegate> delegate = (id)self.delegate;
     YYTextAsyncLayerDisplayTask *task = [delegate newAsyncDisplayTask];
-    if (!task.display) {
+    if (!task.displayXxx) {
         if (task.willDisplay) task.willDisplay(self);
         self.contents = nil;
         if (task.didDisplay) task.didDisplay(self, YES);
@@ -162,7 +162,7 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
                 } CGContextRestoreGState(context);
                 CGColorRelease(backgroundColor);
             }
-            task.display(context, size, isCancelled);
+            task.displayXxx(context, size, isCancelled);
             if (isCancelled()) {
                 UIGraphicsEndImageContext();
                 dispatch_async(dispatch_get_main_queue(), ^{
