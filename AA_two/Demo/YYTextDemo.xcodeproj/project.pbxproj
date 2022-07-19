@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26AE13612886945800E4FEDE /* YYTextAttributeExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AE13602886945800E4FEDE /* YYTextAttributeExample.m */; };
+		26AE13642886949700E4FEDE /* YYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AE13622886949700E4FEDE /* YYLabel.m */; };
 		D91054861F3735D20007F224 /* Animated image support.txt in Resources */ = {isa = PBXBuildFile; fileRef = D910547B1F3735D20007F224 /* Animated image support.txt */; };
 		D91054871F3735D20007F224 /* YYAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D910547D1F3735D20007F224 /* YYAnimatedImageView.m */; };
 		D91054881F3735D20007F224 /* YYFrameImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D910547F1F3735D20007F224 /* YYFrameImage.m */; };
@@ -35,7 +37,6 @@
 		D91054D41F3735E50007F224 /* YYTextTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = D91054B71F3735E50007F224 /* YYTextTransaction.m */; };
 		D91054D51F3735E50007F224 /* YYTextUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D91054B91F3735E50007F224 /* YYTextUtilities.m */; };
 		D91054D61F3735E50007F224 /* YYTextWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D91054BB1F3735E50007F224 /* YYTextWeakProxy.m */; };
-		D91054D71F3735E50007F224 /* YYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D91054BD1F3735E50007F224 /* YYLabel.m */; };
 		D91054D81F3735E50007F224 /* YYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D91054C01F3735E50007F224 /* YYTextView.m */; };
 		D91054DD1F3736060007F224 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D91054DA1F3736060007F224 /* AppDelegate.m */; };
 		D91054F61F3736700007F224 /* CALayer+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = D91054E11F3736700007F224 /* CALayer+YYAdd.m */; };
@@ -51,7 +52,6 @@
 		D91055001F3736700007F224 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D91054F51F3736700007F224 /* YYWeakProxy.m */; };
 		D910551B1F37367B0007F224 /* YYTextAsyncExample.m in Sources */ = {isa = PBXBuildFile; fileRef = D91055021F37367B0007F224 /* YYTextAsyncExample.m */; };
 		D910551C1F37367B0007F224 /* YYTextAttachmentExample.m in Sources */ = {isa = PBXBuildFile; fileRef = D91055041F37367B0007F224 /* YYTextAttachmentExample.m */; };
-		D910551D1F37367B0007F224 /* YYTextAttributeExample.m in Sources */ = {isa = PBXBuildFile; fileRef = D91055061F37367B0007F224 /* YYTextAttributeExample.m */; };
 		D910551E1F37367B0007F224 /* YYTextBindingExample.m in Sources */ = {isa = PBXBuildFile; fileRef = D91055081F37367B0007F224 /* YYTextBindingExample.m */; };
 		D910551F1F37367B0007F224 /* YYTextCopyPasteExample.m in Sources */ = {isa = PBXBuildFile; fileRef = D910550A1F37367B0007F224 /* YYTextCopyPasteExample.m */; };
 		D91055201F37367B0007F224 /* YYTextEditExample.m in Sources */ = {isa = PBXBuildFile; fileRef = D910550C1F37367B0007F224 /* YYTextEditExample.m */; };
@@ -81,6 +81,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26AE135F2886945800E4FEDE /* YYTextAttributeExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextAttributeExample.h; sourceTree = "<group>"; };
+		26AE13602886945800E4FEDE /* YYTextAttributeExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextAttributeExample.m; sourceTree = "<group>"; };
+		26AE13622886949700E4FEDE /* YYLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYLabel.m; sourceTree = "<group>"; };
+		26AE13632886949700E4FEDE /* YYLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYLabel.h; sourceTree = "<group>"; };
 		D910547B1F3735D20007F224 /* Animated image support.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Animated image support.txt"; sourceTree = "<group>"; };
 		D910547C1F3735D20007F224 /* YYAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYAnimatedImageView.h; sourceTree = "<group>"; };
 		D910547D1F3735D20007F224 /* YYAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYAnimatedImageView.m; sourceTree = "<group>"; };
@@ -136,8 +140,6 @@
 		D91054B91F3735E50007F224 /* YYTextUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextUtilities.m; sourceTree = "<group>"; };
 		D91054BA1F3735E50007F224 /* YYTextWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextWeakProxy.h; sourceTree = "<group>"; };
 		D91054BB1F3735E50007F224 /* YYTextWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextWeakProxy.m; sourceTree = "<group>"; };
-		D91054BC1F3735E50007F224 /* YYLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYLabel.h; sourceTree = "<group>"; };
-		D91054BD1F3735E50007F224 /* YYLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYLabel.m; sourceTree = "<group>"; };
 		D91054BE1F3735E50007F224 /* YYText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYText.h; sourceTree = "<group>"; };
 		D91054BF1F3735E50007F224 /* YYTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextView.h; sourceTree = "<group>"; };
 		D91054C01F3735E50007F224 /* YYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextView.m; sourceTree = "<group>"; };
@@ -169,8 +171,6 @@
 		D91055021F37367B0007F224 /* YYTextAsyncExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextAsyncExample.m; sourceTree = "<group>"; };
 		D91055031F37367B0007F224 /* YYTextAttachmentExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextAttachmentExample.h; sourceTree = "<group>"; };
 		D91055041F37367B0007F224 /* YYTextAttachmentExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextAttachmentExample.m; sourceTree = "<group>"; };
-		D91055051F37367B0007F224 /* YYTextAttributeExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextAttributeExample.h; sourceTree = "<group>"; };
-		D91055061F37367B0007F224 /* YYTextAttributeExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextAttributeExample.m; sourceTree = "<group>"; };
 		D91055071F37367B0007F224 /* YYTextBindingExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextBindingExample.h; sourceTree = "<group>"; };
 		D91055081F37367B0007F224 /* YYTextBindingExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextBindingExample.m; sourceTree = "<group>"; };
 		D91055091F37367B0007F224 /* YYTextCopyPasteExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextCopyPasteExample.h; sourceTree = "<group>"; };
@@ -255,8 +255,6 @@
 				D910548D1F3735E50007F224 /* Component */,
 				D91054A01F3735E50007F224 /* String */,
 				D91054AB1F3735E50007F224 /* Utility */,
-				D91054BC1F3735E50007F224 /* YYLabel.h */,
-				D91054BD1F3735E50007F224 /* YYLabel.m */,
 				D91054BE1F3735E50007F224 /* YYText.h */,
 				D91054BF1F3735E50007F224 /* YYTextView.h */,
 				D91054C01F3735E50007F224 /* YYTextView.m */,
@@ -395,6 +393,10 @@
 		D94EE9821F37304200F37AD6 = {
 			isa = PBXGroup;
 			children = (
+				26AE13632886949700E4FEDE /* YYLabel.h */,
+				26AE13622886949700E4FEDE /* YYLabel.m */,
+				26AE135F2886945800E4FEDE /* YYTextAttributeExample.h */,
+				26AE13602886945800E4FEDE /* YYTextAttributeExample.m */,
 				D910547A1F3735D20007F224 /* YYImage */,
 				D910548C1F3735E50007F224 /* YYText */,
 				D94EE98D1F37304200F37AD6 /* YYTextDemo */,
@@ -418,8 +420,6 @@
 				D91055101F37367B0007F224 /* YYTextExample.m */,
 				D91055111F37367B0007F224 /* YYTextExampleHelper.h */,
 				D91055121F37367B0007F224 /* YYTextExampleHelper.m */,
-				D91055051F37367B0007F224 /* YYTextAttributeExample.h */,
-				D91055061F37367B0007F224 /* YYTextAttributeExample.m */,
 				D91055171F37367B0007F224 /* YYTextTagExample.h */,
 				D91055181F37367B0007F224 /* YYTextTagExample.m */,
 				D91055031F37367B0007F224 /* YYTextAttachmentExample.h */,
@@ -529,19 +529,18 @@
 				D910551B1F37367B0007F224 /* YYTextAsyncExample.m in Sources */,
 				D94EE99E1F37304200F37AD6 /* main.m in Sources */,
 				D91055251F37367B0007F224 /* YYTextRubyExample.m in Sources */,
+				26AE13642886949700E4FEDE /* YYLabel.m in Sources */,
 				D91054FC1F3736700007F224 /* UIImage+YYWebImage.m in Sources */,
 				D91054D11F3735E50007F224 /* UIPasteboard+YYText.m in Sources */,
 				D91054F61F3736700007F224 /* CALayer+YYAdd.m in Sources */,
 				D91054D01F3735E50007F224 /* NSParagraphStyle+YYText.m in Sources */,
 				D91054FD1F3736700007F224 /* UIView+YYAdd.m in Sources */,
 				D91054D51F3735E50007F224 /* YYTextUtilities.m in Sources */,
-				D91054D71F3735E50007F224 /* YYLabel.m in Sources */,
 				D91054CC1F3735E50007F224 /* YYTextParser.m in Sources */,
 				D91055221F37367B0007F224 /* YYTextExample.m in Sources */,
 				D91054F81F3736700007F224 /* NSData+YYAdd.m in Sources */,
 				D91054F71F3736700007F224 /* NSBundle+YYAdd.m in Sources */,
 				D91054C81F3735E50007F224 /* YYTextMagnifier.m in Sources */,
-				D910551D1F37367B0007F224 /* YYTextAttributeExample.m in Sources */,
 				D91055261F37367B0007F224 /* YYTextTagExample.m in Sources */,
 				D91054C21F3735E50007F224 /* YYTextDebugOption.m in Sources */,
 				D91054C51F3735E50007F224 /* YYTextKeyboardManager.m in Sources */,
@@ -565,6 +564,7 @@
 				D91054C61F3735E50007F224 /* YYTextLayout.m in Sources */,
 				D91054FA1F3736700007F224 /* UIControl+YYAdd.m in Sources */,
 				D91054DD1F3736060007F224 /* AppDelegate.m in Sources */,
+				26AE13612886945800E4FEDE /* YYTextAttributeExample.m in Sources */,
 				D91054D81F3735E50007F224 /* YYTextView.m in Sources */,
 				D91054F91F3736700007F224 /* NSString+YYAdd.m in Sources */,
 				D910548A1F3735D20007F224 /* YYImageCoder.m in Sources */,
