@@ -38,7 +38,7 @@
     
     // capture current state to display task
     NSString *text = _text;
-    UIFont *font = _font;
+    UIFont *fontX = _font;
     
     YYAsyncLayerDisplayTask *task = [YYAsyncLayerDisplayTask new];
     task.willDisplay = ^(CALayer *layer) {
@@ -54,7 +54,7 @@
             CGContextTranslateCTM(context, 0, h_h);
             CGContextScaleCTM(context, 1.0, -1.0);
         }];
-        NSAttributedString* str = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName:self->_font, NSForegroundColorAttributeName: UIColor.blueColor}];
+        NSAttributedString* str = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName: fontX, NSForegroundColorAttributeName: UIColor.blueColor}];
     //    CGContextSetTextPosition(context, 0, 250);
         
         CTFramesetterRef ref = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)str);
