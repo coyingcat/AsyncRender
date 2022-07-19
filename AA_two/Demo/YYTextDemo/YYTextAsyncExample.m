@@ -42,7 +42,7 @@
     _yyLabel.font = _uiLabel.font;
     _yyLabel.numberOfLines = _uiLabel.numberOfLines;
     _yyLabel.size = _uiLabel.size;
-    _yyLabel.displaysAsynchronously = YES; /// enable async display
+   
     _yyLabel.hidden = YES;
     
     [self.contentView addSubview:_uiLabel];

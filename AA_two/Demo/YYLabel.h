@@ -240,13 +240,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Configuring the Display Mode
 ///=============================================================================
 
-/**
- A Boolean value indicating whether the layout and rendering codes are running
- asynchronously on background threads. 
- 
- The default value is `NO`.
- */
-@property (nonatomic) BOOL displaysAsynchronously;
 
 /**
  If the value is YES, and the layer is rendered asynchronously, then it will
@@ -296,13 +289,13 @@ NS_ASSUME_NONNULL_BEGIN
     you do not need to adjust the display mode properties.
  
  2. If you have performance issues, you may enable the asynchronous display mode
-    by setting the `displaysAsynchronously` to YES.
+
  
  3. If you want to get the highest performance, you should do text layout with
     `YYTextLayout` class in background thread. Here's an example:
     
     YYLabel *label = [YYLabel new];
-    label.displaysAsynchronously = YES;
+
     label.ignoreCommonProperties = YES;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -369,7 +362,7 @@ IB_DESIGNABLE
 @property (nullable, nonatomic, copy) YYTextAction textLongPressAction;
 @property (nullable, nonatomic, copy) YYTextAction highlightTapAction;
 @property (nullable, nonatomic, copy) YYTextAction highlightLongPressAction;
-@property (nonatomic) BOOL displaysAsynchronously;
+
 @property (nonatomic) BOOL clearContentsBeforeAsynchronouslyDisplay;
 @property (nonatomic) BOOL fadeOnAsynchronouslyDisplay;
 @property (nonatomic) BOOL fadeOnHighlight;

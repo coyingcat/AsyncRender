@@ -376,7 +376,6 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
 }
 
 - (void)_initLabel {
-    ((YYTextAsyncLayer *)self.layer).displaysAsynchronously = NO;
     self.layer.contentsScale = [UIScreen mainScreen].scale;
     self.contentMode = UIViewContentModeRedraw;
     
@@ -433,7 +432,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
         if (!_ignoreCommonProperties) {
             _state.layoutNeedUpdate = YES;
         }
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedRedraw];
@@ -449,7 +448,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
         if (!_ignoreCommonProperties) {
             _state.layoutNeedUpdate = YES;
         }
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedRedraw];
@@ -664,7 +663,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
         [self _updateOuterTextProperties];
     }
     if (!_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -681,7 +680,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _font = font;
     _innerText.yy_font = _font;
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -698,7 +697,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _textColor = textColor;
     _innerText.yy_color = textColor;
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -710,7 +709,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _shadowColor = shadowColor;
     _innerText.yy_shadow = [self _shadowFromProperties];
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -723,7 +722,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _shadowOffset = shadowOffset;
     _innerText.yy_shadow = [self _shadowFromProperties];
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -735,7 +734,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _shadowOffset = shadowOffset;
     _innerText.yy_shadow = [self _shadowFromProperties];
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -748,7 +747,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _shadowBlurRadius = shadowBlurRadius;
     _innerText.yy_shadow = [self _shadowFromProperties];
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -760,7 +759,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _textAlignment = textAlignment;
     _innerText.yy_alignment = textAlignment;
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -796,7 +795,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
         default: break;
     }
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -809,7 +808,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     if (_textVerticalAlignment == textVerticalAlignment) return;
     _textVerticalAlignment = textVerticalAlignment;
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -823,7 +822,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _truncationToken = truncationToken.copy;
     _innerContainer.truncationToken = truncationToken;
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -837,7 +836,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _numberOfLines = numberOfLines;
     _innerContainer.maximumNumberOfRows = numberOfLines;
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -867,7 +866,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     }
     [_textParser parseText:_innerText selectedRange:NULL];
     if (!_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _updateOuterTextProperties];
@@ -886,7 +885,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
         _innerContainer.insets = _textContainerInset;
     }
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -900,7 +899,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _exclusionPaths = exclusionPaths.copy;
     _innerContainer.exclusionPaths = exclusionPaths;
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -914,7 +913,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _textContainerInset = textContainerInset;
     _innerContainer.insets = textContainerInset;
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -928,7 +927,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _verticalForm = verticalForm;
     _innerContainer.verticalForm = verticalForm;
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -942,7 +941,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _linePositionModifier = linePositionModifier;
     _innerContainer.linePositionModifier = linePositionModifier;
     if (_innerText.length && !_ignoreCommonProperties) {
-        if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+        if (_clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
         }
         [self _setLayoutNeedUpdate];
@@ -957,7 +956,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     if ([_textParser parseText:_innerText selectedRange:NULL]) {
         [self _updateOuterTextProperties];
         if (!_ignoreCommonProperties) {
-            if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+            if (_clearContentsBeforeAsynchronouslyDisplay) {
                 [self _clearContents];
             }
             [self _setLayoutNeedUpdate];
@@ -990,7 +989,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
         [self _updateOuterContainerProperties];
     }
     
-    if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
+    if (_clearContentsBeforeAsynchronouslyDisplay) {
         [self _clearContents];
     }
     _state.layoutNeedUpdate = NO;
@@ -1004,10 +1003,6 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     return _innerLayout;
 }
 
-- (void)setDisplaysAsynchronously:(BOOL)displaysAsynchronously {
-    _displaysAsynchronously = displaysAsynchronously;
-    ((YYTextAsyncLayer *)self.layer).displaysAsynchronously = displaysAsynchronously;
-}
 
 #pragma mark - AutoLayout
 
@@ -1067,7 +1062,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     NSMutableArray *attachmentViews = _attachmentViews;
     NSMutableArray *attachmentLayers = _attachmentLayers;
     BOOL layoutNeedUpdate = _state.layoutNeedUpdate;
-    BOOL fadeForAsync = _displaysAsynchronously && _fadeOnAsynchronouslyDisplay;
+    BOOL fadeForAsync = _fadeOnAsynchronouslyDisplay;
     __block YYTextLayout *layout = (_state.showingHighlight && _highlightLayout) ? self._highlightLayout : self._innerLayout;
     __block YYTextLayout *shrinkLayout = nil;
     __block BOOL layoutUpdated = NO;

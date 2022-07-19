@@ -79,14 +79,6 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
 
 #pragma mark - Override
 
-+ (id)defaultValueForKey:(NSString *)key {
-    if ([key isEqualToString:@"displaysAsynchronously"]) {
-        return @(YES);
-    } else {
-        return [super defaultValueForKey:key];
-    }
-}
-
 - (instancetype)init {
     self = [super init];
     static CGFloat scale; //global
@@ -96,7 +88,6 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
     });
     self.contentsScale = scale;
     _sentinel = [_YYTextSentinel new];
-    _displaysAsynchronously = YES;
     return self;
 }
 
@@ -111,7 +102,7 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
 
 - (void)display {
     super.contents = super.contents;
-    [self _displayAsync:_displaysAsynchronously];
+    [self _displayAsync: YES];
 }
 
 #pragma mark - Private

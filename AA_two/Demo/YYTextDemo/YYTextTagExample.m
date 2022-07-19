@@ -78,7 +78,7 @@
     YYTextView *textView = [YYTextView new];
     textView.attributedText = text;
     textView.size = self.view.size;
-    textView.textContainerInset = UIEdgeInsetsMake(10 + 64, 10, 10, 10);
+    textView.textContainerInset = UIEdgeInsetsMake(10 + 120, 10, 10, 10);
     textView.allowsCopyAttributedString = YES;
     textView.allowsPasteAttributedString = YES;
     textView.delegate = self;
