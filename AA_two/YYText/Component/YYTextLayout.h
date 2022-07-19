@@ -230,7 +230,7 @@ extern const CGSize YYTextContainerMaxSize;
 ///< CTFrame
 @property (nonatomic, readonly) CTFrameRef frame;
 ///< Array of `YYTextLine`, no truncated
-@property (nonatomic, strong, readonly) NSArray<YYTextLine *> *lines;
+@property (nonatomic, strong, readonly) NSArray<YYTextLine *> *linesXx;
 ///< YYTextLine with truncated token, or nil
 @property (nullable, nonatomic, strong, readonly) YYTextLine *truncatedLine;
 ///< Array of `YYTextAttachment`

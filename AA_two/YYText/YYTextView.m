@@ -507,8 +507,8 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     }
     
     NSUInteger lineIndex = [_innerLayout lineIndexForPosition:position];
-    if (lineIndex < _innerLayout.lines.count) {
-        YYTextLine *line = _innerLayout.lines[lineIndex];
+    if (lineIndex < _innerLayout.linesXx.count) {
+        YYTextLine *line = _innerLayout.linesXx[lineIndex];
         CGRect lineRect = [self _convertRectFromLayout:line.bounds];
         if (_verticalForm) {
             magPoint.x = YYTEXT_CLAMP(magPoint.x, CGRectGetMinX(lineRect), CGRectGetMaxX(lineRect));
@@ -1174,8 +1174,8 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     }
     YYTextPosition *position = [_innerLayout closestPositionToPoint:magPoint];
     NSUInteger lineIndex = [_innerLayout lineIndexForPosition:position];
-    if (lineIndex < _innerLayout.lines.count) {
-        YYTextLine *line = _innerLayout.lines[lineIndex];
+    if (lineIndex < _innerLayout.linesXx.count) {
+        YYTextLine *line = _innerLayout.linesXx[lineIndex];
         if (_verticalForm) {
             magPoint.x = YYTEXT_CLAMP(magPoint.x, line.left, line.right);
             return magPoint.x - line.position.x + kMagnifierRangedPopoverOffset;

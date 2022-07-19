@@ -316,7 +316,7 @@ dispatch_semaphore_signal(_lock);
 
 @property (nonatomic, readwrite) CTFramesetterRef frameSetter;
 @property (nonatomic, readwrite) CTFrameRef frame;
-@property (nonatomic, readwrite) NSArray *lines;
+@property (nonatomic, readwrite) NSArray *linesXx;
 @property (nonatomic, readwrite) YYTextLine *truncatedLine;
 @property (nonatomic, readwrite) NSArray *attachments;
 @property (nonatomic, readwrite) NSArray *attachmentRanges;
@@ -862,7 +862,7 @@ dispatch_semaphore_signal(_lock);
     
     layout.frameSetter = ctSetter;
     layout.frame = ctFrame;
-    layout.lines = lines;
+    layout.linesXx = lines;
     layout.truncatedLine = truncatedLine;
     layout.attachments = attachments;
     layout.attachmentRanges = attachmentRanges;
@@ -1206,26 +1206,26 @@ fail:
 - (NSUInteger)lineCountForRow:(NSUInteger)row {
     if (row >= _rowCount) return NSNotFound;
     if (row == _rowCount - 1) {
-        return _lines.count - _lineRowsIndex[row];
+        return _linesXx.count - _lineRowsIndex[row];
     } else {
         return _lineRowsIndex[row + 1] - _lineRowsIndex[row];
     }
 }
 
 - (NSUInteger)rowIndexForLine:(NSUInteger)line {
-    if (line >= _lines.count) return NSNotFound;
-    return ((YYTextLine *)_lines[line]).row;
+    if (line >= _linesXx.count) return NSNotFound;
+    return ((YYTextLine *)_linesXx[line]).row;
 }
 
 - (NSUInteger)lineIndexForPoint:(CGPoint)point {
-    if (_lines.count == 0 || _rowCount == 0) return NSNotFound;
+    if (_linesXx.count == 0 || _rowCount == 0) return NSNotFound;
     NSUInteger rowIdx = [self _rowIndexForEdge:_container.verticalForm ? point.x : point.y];
     if (rowIdx == NSNotFound) return NSNotFound;
     
     NSUInteger lineIdx0 = _lineRowsIndex[rowIdx];
-    NSUInteger lineIdx1 = rowIdx == _rowCount - 1 ? _lines.count - 1 : _lineRowsIndex[rowIdx + 1] - 1;
+    NSUInteger lineIdx1 = rowIdx == _rowCount - 1 ? _linesXx.count - 1 : _lineRowsIndex[rowIdx + 1] - 1;
     for (NSUInteger i = lineIdx0; i <= lineIdx1; i++) {
-        CGRect bounds = ((YYTextLine *)_lines[i]).bounds;
+        CGRect bounds = ((YYTextLine *)_linesXx[i]).bounds;
         if (CGRectContainsPoint(bounds, point)) return i;
     }
     
@@ -1234,18 +1234,18 @@ fail:
 
 - (NSUInteger)closestLineIndexForPoint:(CGPoint)point {
     BOOL isVertical = _container.verticalForm;
-    if (_lines.count == 0 || _rowCount == 0) return NSNotFound;
+    if (_linesXx.count == 0 || _rowCount == 0) return NSNotFound;
     NSUInteger rowIdx = [self _closestRowIndexForEdge:isVertical ? point.x : point.y];
     if (rowIdx == NSNotFound) return NSNotFound;
     
     NSUInteger lineIdx0 = _lineRowsIndex[rowIdx];
-    NSUInteger lineIdx1 = rowIdx == _rowCount - 1 ? _lines.count - 1 : _lineRowsIndex[rowIdx + 1] - 1;
+    NSUInteger lineIdx1 = rowIdx == _rowCount - 1 ? _linesXx.count - 1 : _lineRowsIndex[rowIdx + 1] - 1;
     if (lineIdx0 == lineIdx1) return lineIdx0;
     
     CGFloat minDistance = CGFLOAT_MAX;
     NSUInteger minIndex = lineIdx0;
     for (NSUInteger i = lineIdx0; i <= lineIdx1; i++) {
-        CGRect bounds = ((YYTextLine *)_lines[i]).bounds;
+        CGRect bounds = ((YYTextLine *)_linesXx[i]).bounds;
         if (isVertical) {
             if (bounds.origin.y <= point.y && point.y <= bounds.origin.y + bounds.size.height) return i;
             CGFloat distance;
@@ -1276,8 +1276,8 @@ fail:
 }
 
 - (CGFloat)offsetForTextPosition:(NSUInteger)position lineIndex:(NSUInteger)lineIndex {
-    if (lineIndex >= _lines.count) return CGFLOAT_MAX;
-    YYTextLine *line = _lines[lineIndex];
+    if (lineIndex >= _linesXx.count) return CGFLOAT_MAX;
+    YYTextLine *line = _linesXx[lineIndex];
     CFRange range = CTLineGetStringRange(line.CTLine);
     if (position < range.location || position > range.location + range.length) return CGFLOAT_MAX;
     
@@ -1286,8 +1286,8 @@ fail:
 }
 
 - (NSUInteger)textPositionForPoint:(CGPoint)point lineIndex:(NSUInteger)lineIndex {
-    if (lineIndex >= _lines.count) return NSNotFound;
-    YYTextLine *line = _lines[lineIndex];
+    if (lineIndex >= _linesXx.count) return NSNotFound;
+    YYTextLine *line = _linesXx[lineIndex];
     if (_container.verticalForm) {
         point.x = point.y - line.position.y;
         point.y = 0;
@@ -1359,7 +1359,7 @@ fail:
     
     NSUInteger lineIndex = [self closestLineIndexForPoint:point];
     if (lineIndex == NSNotFound) return nil;
-    YYTextLine *line = _lines[lineIndex];
+    YYTextLine *line = _linesXx[lineIndex];
     __block NSUInteger position = [self textPositionForPoint:point lineIndex:lineIndex];
     if (position == NSNotFound) position = line.range.location;
     if (position <= _visibleRange.location) {
@@ -1435,7 +1435,7 @@ fail:
                 CGFloat left = [self offsetForTextPosition:bindingRange.location lineIndex:headLineIdx];
                 if (left != CGFLOAT_MAX) {
                     lineIndex = headLineIdx;
-                    line = _lines[headLineIdx];
+                    line = _linesXx[headLineIdx];
                     position = bindingRange.location;
                     finalAffinity = YYTextAffinityForward;
                     finalAffinityDetected = YES;
@@ -1444,7 +1444,7 @@ fail:
                 CGFloat right = [self offsetForTextPosition:bindingRange.location + bindingRange.length lineIndex:tailLineIdx];
                 if (right != CGFLOAT_MAX) {
                     lineIndex = tailLineIdx;
-                    line = _lines[tailLineIdx];
+                    line = _linesXx[tailLineIdx];
                     position = bindingRange.location + bindingRange.length;
                     finalAffinity = YYTextAffinityBackward;
                     finalAffinityDetected = YES;
@@ -1455,7 +1455,7 @@ fail:
     
     // empty line
     if (line.range.length == 0) {
-        BOOL behind = (_lines.count > 1 && lineIndex == _lines.count - 1);  //end line
+        BOOL behind = (_linesXx.count > 1 && lineIndex == _linesXx.count - 1);  //end line
         return [YYTextPosition positionWithOffset:line.range.location affinity:behind ? YYTextAffinityBackward:YYTextAffinityForward];
     }
     
@@ -1474,7 +1474,7 @@ fail:
         finalAffinityDetected = YES;
     }
     // below whole text frame
-    if (lineIndex == _lines.count - 1 && (isVertical ? (point.x < line.left) : (point.y > line.bottom))) {
+    if (lineIndex == _linesXx.count - 1 && (isVertical ? (point.x < line.left) : (point.y > line.bottom))) {
         position = line.range.location + line.range.length;
         finalAffinity = YYTextAffinityBackward;
         finalAffinityDetected = YES;
@@ -1553,7 +1553,7 @@ fail:
     }
     NSUInteger lineIndex = [self lineIndexForPosition:otherPosition];
     if (lineIndex == NSNotFound) return oldPosition;
-    YYTextLine *line = _lines[lineIndex];
+    YYTextLine *line = _linesXx[lineIndex];
     YYRowEdge vertical = _lineRowsEdge[line.row];
     if (_container.verticalForm) {
         point.x = (vertical.head + vertical.foot) * 0.5;
@@ -1596,7 +1596,7 @@ fail:
     if (!pos) return nil;
     
     // get write direction
-    BOOL RTL = [self _isRightToLeftInLine:_lines[lineIndex] atPoint:point];
+    BOOL RTL = [self _isRightToLeftInLine:_linesXx[lineIndex] atPoint:point];
     CGRect rect = [self caretRectForPosition:pos];
     if (CGRectIsNull(rect)) return nil;
     
@@ -1614,7 +1614,7 @@ fail:
     if (!pos) return nil;
     NSUInteger lineIndex = [self lineIndexForPosition:pos];
     if (lineIndex == NSNotFound) return nil;
-    YYTextLine *line = _lines[lineIndex];
+    YYTextLine *line = _linesXx[lineIndex];
     BOOL RTL = [self _isRightToLeftInLine:line atPoint:point];
     CGRect rect = [self caretRectForPosition:pos];
     if (CGRectIsNull(rect)) return nil;
@@ -1671,7 +1671,7 @@ fail:
         __block NSUInteger _prev, _next;
         BOOL emoji = NO, seq = NO;
         
-        YYTextLine *line = _lines[lineIndex];
+        YYTextLine *line = _linesXx[lineIndex];
         emoji = [self _insideEmoji:line position:position.offset block: ^(CGFloat left, CGFloat right, NSUInteger prev, NSUInteger next) {
             _prev = prev;
             _next = next;
@@ -1749,7 +1749,7 @@ fail:
         NSInteger lineIndex = [self lineIndexForPosition:position];
         if (lineIndex == NSNotFound) return nil;
         
-        YYTextLine *line = _lines[lineIndex];
+        YYTextLine *line = _linesXx[lineIndex];
         NSInteger moveToRowIndex = (NSInteger)line.row + (forwardMove ? offset : -offset);
         if (moveToRowIndex < 0) return allBackward;
         else if (moveToRowIndex >= (NSInteger)_rowCount) return allForward;
@@ -1765,7 +1765,7 @@ fail:
         NSUInteger insideIndex = NSNotFound;
         for (NSUInteger i = 0; i < moveToLineCount; i++) {
             NSUInteger lineIndex = moveToLineFirstIndex + i;
-            YYTextLine *line = _lines[lineIndex];
+            YYTextLine *line = _linesXx[lineIndex];
             if (isVerticalForm) {
                 if (line.top <= ofs && ofs <= line.bottom) {
                     insideIndex = line.index;
@@ -1803,7 +1803,7 @@ fail:
             }
             afinityEdge = YES;
         }
-        YYTextLine *insideLine = _lines[insideIndex];
+        YYTextLine *insideLine = _linesXx[insideIndex];
         NSUInteger pos;
         if (isVerticalForm) {
             pos = [self textPositionForPoint:CGPointMake(insideLine.position.x, ofs) lineIndex:insideIndex];
@@ -1847,13 +1847,13 @@ fail:
 
 - (NSUInteger)lineIndexForPosition:(YYTextPosition *)position {
     if (!position) return NSNotFound;
-    if (_lines.count == 0) return NSNotFound;
+    if (_linesXx.count == 0) return NSNotFound;
     NSUInteger location = position.offset;
-    NSInteger lo = 0, hi = _lines.count - 1, mid = 0;
+    NSInteger lo = 0, hi = _linesXx.count - 1, mid = 0;
     if (position.affinity == YYTextAffinityBackward) {
         while (lo <= hi) {
             mid = (lo + hi) / 2;
-            YYTextLine *line = _lines[mid];
+            YYTextLine *line = _linesXx[mid];
             NSRange range = line.range;
             if (range.location < location && location <= range.location + range.length) {
                 return mid;
@@ -1867,7 +1867,7 @@ fail:
     } else {
         while (lo <= hi) {
             mid = (lo + hi) / 2;
-            YYTextLine *line = _lines[mid];
+            YYTextLine *line = _linesXx[mid];
             NSRange range = line.range;
             if (range.location <= location && location < range.location + range.length) {
                 return mid;
@@ -1885,7 +1885,7 @@ fail:
 - (CGPoint)linePositionForPosition:(YYTextPosition *)position {
     NSUInteger lineIndex = [self lineIndexForPosition:position];
     if (lineIndex == NSNotFound) return CGPointZero;
-    YYTextLine *line = _lines[lineIndex];
+    YYTextLine *line = _linesXx[lineIndex];
     CGFloat offset = [self offsetForTextPosition:position.offset lineIndex:lineIndex];
     if (offset == CGFLOAT_MAX) return CGPointZero;
     if (_container.verticalForm) {
@@ -1898,7 +1898,7 @@ fail:
 - (CGRect)caretRectForPosition:(YYTextPosition *)position {
     NSUInteger lineIndex = [self lineIndexForPosition:position];
     if (lineIndex == NSNotFound) return CGRectNull;
-    YYTextLine *line = _lines[lineIndex];
+    YYTextLine *line = _linesXx[lineIndex];
     CGFloat offset = [self offsetForTextPosition:position.offset lineIndex:lineIndex];
     if (offset == CGFLOAT_MAX) return CGRectNull;
     if (_container.verticalForm) {
@@ -1915,11 +1915,11 @@ fail:
     NSUInteger endLineIndex = [self lineIndexForPosition:range.end];
     if (startLineIndex == NSNotFound || endLineIndex == NSNotFound) return CGRectNull;
     if (startLineIndex > endLineIndex) return CGRectNull;
-    YYTextLine *startLine = _lines[startLineIndex];
-    YYTextLine *endLine = _lines[endLineIndex];
+    YYTextLine *startLine = _linesXx[startLineIndex];
+    YYTextLine *endLine = _linesXx[endLineIndex];
     NSMutableArray *lines = [NSMutableArray new];
     for (NSUInteger i = startLineIndex; i <= startLineIndex; i++) {
-        YYTextLine *line = _lines[i];
+        YYTextLine *line = _linesXx[i];
         if (line.row != startLine.row) break;
         [lines addObject:line];
     }
@@ -1996,8 +1996,8 @@ fail:
     NSUInteger endLineIndex = [self lineIndexForPosition:range.end];
     if (startLineIndex == NSNotFound || endLineIndex == NSNotFound) return rects;
     if (startLineIndex > endLineIndex) YYTEXT_SWAP(startLineIndex, endLineIndex);
-    YYTextLine *startLine = _lines[startLineIndex];
-    YYTextLine *endLine = _lines[endLineIndex];
+    YYTextLine *startLine = _linesXx[startLineIndex];
+    YYTextLine *endLine = _linesXx[endLineIndex];
     CGFloat offsetStart = [self offsetForTextPosition:range.start.offset lineIndex:startLineIndex];
     CGFloat offsetEnd = [self offsetForTextPosition:range.end.offset lineIndex:endLineIndex];
     
@@ -2082,7 +2082,7 @@ fail:
             CGRect r = CGRectZero;
             BOOL startLineDetected = NO;
             for (NSUInteger l = startLineIndex + 1; l < endLineIndex; l++) {
-                YYTextLine *line = _lines[l];
+                YYTextLine *line = _linesXx[l];
                 if (line.row == startLine.row || line.row == endLine.row) continue;
                 if (!startLineDetected) {
                     r = line.bounds;
@@ -2608,7 +2608,7 @@ static void YYTextDrawText(YYTextLayout *layout, CGContextRef context, CGSize si
         
         BOOL isVertical = layout.container.verticalForm;
         CGFloat verticalOffset = isVertical ? (size.width - layout.container.size.width) : 0;
-        NSArray *lines = layout.lines;
+        NSArray *lines = layout.linesXx;
         for (NSUInteger l = 0, lMax = lines.count; l < lMax; l++) {
             YYTextLine *line = lines[l];
             if (layout.truncatedLine && layout.truncatedLine.index == line.index) line = layout.truncatedLine;
@@ -2640,7 +2640,7 @@ static void YYTextDrawBlockBorder(YYTextLayout *layout, CGContextRef context, CG
     BOOL isVertical = layout.container.verticalForm;
     CGFloat verticalOffset = isVertical ? (size.width - layout.container.size.width) : 0;
     
-    NSArray *lines = layout.lines;
+    NSArray *lines = layout.linesXx;
     for (NSInteger l = 0, lMax = lines.count; l < lMax; l++) {
         if (cancel && cancel()) break;
         
@@ -2713,7 +2713,7 @@ static void YYTextDrawBorder(YYTextLayout *layout, CGContextRef context, CGSize 
     BOOL isVertical = layout.container.verticalForm;
     CGFloat verticalOffset = isVertical ? (size.width - layout.container.size.width) : 0;
     
-    NSArray *lines = layout.lines;
+    NSArray *lines = layout.linesXx;
     NSString *borderKey = (type == YYTextBorderTypeNormal ? YYTextBorderAttributeName : YYTextBackgroundBorderAttributeName);
     
     BOOL needJumpRun = NO;
@@ -2837,7 +2837,7 @@ static void YYTextDrawBorder(YYTextLayout *layout, CGContextRef context, CGSize 
 }
 
 static void YYTextDrawDecoration(YYTextLayout *layout, CGContextRef context, CGSize size, CGPoint point, YYTextDecorationType type, BOOL (^cancel)(void)) {
-    NSArray *lines = layout.lines;
+    NSArray *lines = layout.linesXx;
     
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, point.x, point.y);
@@ -2846,7 +2846,7 @@ static void YYTextDrawDecoration(YYTextLayout *layout, CGContextRef context, CGS
     CGFloat verticalOffset = isVertical ? (size.width - layout.container.size.width) : 0;
     CGContextTranslateCTM(context, verticalOffset, 0);
     
-    for (NSUInteger l = 0, lMax = layout.lines.count; l < lMax; l++) {
+    for (NSUInteger l = 0, lMax = layout.linesXx.count; l < lMax; l++) {
         if (cancel && cancel()) break;
         
         YYTextLine *line = lines[l];
@@ -3030,8 +3030,8 @@ static void YYTextDrawShadow(YYTextLayout *layout, CGContextRef context, CGSize 
         CGContextTranslateCTM(context, point.x, point.y);
         CGContextTranslateCTM(context, 0, size.height);
         CGContextScaleCTM(context, 1, -1);
-        NSArray *lines = layout.lines;
-        for (NSUInteger l = 0, lMax = layout.lines.count; l < lMax; l++) {
+        NSArray *lines = layout.linesXx;
+        for (NSUInteger l = 0, lMax = layout.linesXx.count; l < lMax; l++) {
             if (cancel && cancel()) break;
             YYTextLine *line = lines[l];
             if (layout.truncatedLine && layout.truncatedLine.index == line.index) line = layout.truncatedLine;
@@ -3080,7 +3080,7 @@ static void YYTextDrawInnerShadow(YYTextLayout *layout, CGContextRef context, CG
     BOOL isVertical = layout.container.verticalForm;
     CGFloat verticalOffset = isVertical ? (size.width - layout.container.size.width) : 0;
     
-    NSArray *lines = layout.lines;
+    NSArray *lines = layout.linesXx;
     for (NSUInteger l = 0, lMax = lines.count; l < lMax; l++) {
         if (cancel && cancel()) break;
         
@@ -3211,7 +3211,7 @@ static void YYTextDrawDebug(YYTextLayout *layout, CGContextRef context, CGSize s
         }
     }
     
-    NSArray *lines = layout.lines;
+    NSArray *lines = layout.linesXx;
     for (NSUInteger l = 0, lMax = lines.count; l < lMax; l++) {
         YYTextLine *line = lines[l];
         if (layout.truncatedLine && layout.truncatedLine.index == line.index) line = layout.truncatedLine;
