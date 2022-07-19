@@ -57,9 +57,6 @@ double YYDeviceSystemVersion();
 #define kSystemVersion YYDeviceSystemVersion()
 #endif
 
-#ifndef kiOS6Later
-#define kiOS6Later (kSystemVersion >= 6)
-#endif
 
 #ifndef kiOS7Later
 #define kiOS7Later (kSystemVersion >= 7)
@@ -73,7 +70,7 @@ double YYDeviceSystemVersion();
 #define kiOS9Later (kSystemVersion >= 9)
 #endif
 
-CGSize YYDeviceScreenSize();
+CGSize YYDeviceScreenSize(void);
 
 
 /// 屏幕宽度

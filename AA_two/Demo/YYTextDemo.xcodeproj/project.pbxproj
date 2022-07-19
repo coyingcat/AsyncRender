@@ -724,7 +724,7 @@
 				COMPRESS_PNG_FILES = NO;
 				INFOPLIST_FILE = YYTextDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ibireme.YYTextDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibireme.YYTextDem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -738,7 +738,7 @@
 				COMPRESS_PNG_FILES = NO;
 				INFOPLIST_FILE = YYTextDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ibireme.YYTextDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibireme.YYTextDem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";

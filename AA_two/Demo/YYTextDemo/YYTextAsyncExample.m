@@ -121,7 +121,7 @@
     
     UIToolbar *toolbar = [UIToolbar new];
     toolbar.size = CGSizeMake(kScreenWidth, 40);
-    toolbar.top = kiOS7Later ? 64 : 0;
+    toolbar.top = 164;
     [self.view addSubview:toolbar];
     
     
