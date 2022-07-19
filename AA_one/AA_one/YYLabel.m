@@ -63,9 +63,13 @@
         NSArray *array = (__bridge NSArray*)arr;
         int i = 0;
         int cnt = (int)array.count;
+        CGPoint originsArray[cnt];
+        CTFrameGetLineOrigins(pic, CFRangeMake(0, 0), originsArray);
+        CGFloat y_y = 3000 - originsArray[cnt - 1].y;
         while (i < cnt) {
+            NSLog(@"%f", originsArray[i].y);
             CTLineRef line = (__bridge CTLineRef)(array[i]);
-            CGContextSetTextPosition(context, 0, i * 30);
+            CGContextSetTextPosition(context, 0, y_y - i * 30);
             CTLineDraw(line, context);
             i += 1;
         }
