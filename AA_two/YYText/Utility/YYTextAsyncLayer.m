@@ -102,12 +102,12 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
 
 - (void)display {
     super.contents = super.contents;
-    [self _displayAsync: YES];
+    [self _displayAsync];
 }
 
 #pragma mark - Private
 
-- (void)_displayAsync:(BOOL)async {
+- (void)_displayAsync{
     __strong id<YYTextAsyncLayerDelegate> delegate = (id)self.delegate;
     YYTextAsyncLayerDisplayTask *task = [delegate newAsyncDisplayTask];
     if (!task.display) {
@@ -117,7 +117,6 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
         return;
     }
     
-    if (async) {
         if (task.willDisplay) task.willDisplay(self);
         _YYTextSentinel *sentinel = _sentinel;
         int32_t value = sentinel.value;
@@ -188,34 +187,7 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
                 }
             });
         });
-    } else {
-        [_sentinel increase];
-        if (task.willDisplay) task.willDisplay(self);
-        UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, self.contentsScale);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        if (self.opaque && context) {
-            CGSize size = self.bounds.size;
-            size.width *= self.contentsScale;
-            size.height *= self.contentsScale;
-            CGContextSaveGState(context); {
-                if (!self.backgroundColor || CGColorGetAlpha(self.backgroundColor) < 1) {
-                    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-                    CGContextAddRect(context, CGRectMake(0, 0, size.width, size.height));
-                    CGContextFillPath(context);
-                }
-                if (self.backgroundColor) {
-                    CGContextSetFillColorWithColor(context, self.backgroundColor);
-                    CGContextAddRect(context, CGRectMake(0, 0, size.width, size.height));
-                    CGContextFillPath(context);
-                }
-            } CGContextRestoreGState(context);
-        }
-        task.display(context, self.bounds.size, ^{return NO;});
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        self.contents = (__bridge id)(image.CGImage);
-        if (task.didDisplay) task.didDisplay(self, YES);
-    }
+    
 }
 
 - (void)_cancelAsyncDisplay {
