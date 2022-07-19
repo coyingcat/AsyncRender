@@ -55,14 +55,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YYAsyncLayerDisplayTask : NSObject
 
 /**
- This block will be called before the asynchronous drawing begins.
- It will be called on the main thread.
- 
- block param layer:  The layer.
- */
-@property (nullable, nonatomic, copy) void (^willDisplay)(CALayer *layer);
-
-/**
  This block is called to draw the layer's contents.
  
  @discussion This block may be called on main thread or background thread,
@@ -74,15 +66,6 @@ NS_ASSUME_NONNULL_BEGIN
    drawing process and return as quickly as possible.
  */
 @property (nullable, nonatomic, copy) void (^display)(CGContextRef context, CGSize size, BOOL(^isCancelled)(void));
-
-/**
- This block will be called after the asynchronous drawing finished.
- It will be called on the main thread.
- 
- block param layer:  The layer.
- block param finished:  If the draw process is cancelled, it's `NO`, otherwise it's `YES`.
- */
-@property (nullable, nonatomic, copy) void (^didDisplay)(CALayer *layer, BOOL finished);
 
 @end
 

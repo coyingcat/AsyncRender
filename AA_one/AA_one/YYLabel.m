@@ -41,9 +41,6 @@
     UIFont *fontX = _font;
     
     YYAsyncLayerDisplayTask *task = [YYAsyncLayerDisplayTask new];
-    task.willDisplay = ^(CALayer *layer) {
-        //...
-    };
     
     CGFloat h_h = self.bounds.size.height;
     CGFloat w_w = self.bounds.size.width;
@@ -74,14 +71,7 @@
             i += 1;
         }
     };
-    
-    task.didDisplay = ^(CALayer *layer, BOOL finished) {
-        if (finished) {
-            // finished
-        } else {
-            // cancelled
-        }
-    };
+
     
     return task;
 }

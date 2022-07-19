@@ -110,14 +110,14 @@ static dispatch_queue_t YYAsyncLayerGetReleaseQueue() {
     __strong id<YYAsyncLayerDelegate> delegate = (id)self.delegate;
     YYAsyncLayerDisplayTask *task = [delegate newAsyncDisplayTask];
     if (!task.display) {
-        if (task.willDisplay) task.willDisplay(self);
+       
         self.contents = nil;
-        if (task.didDisplay) task.didDisplay(self, YES);
+     
         return;
     }
     
     if (async) {
-        if (task.willDisplay) task.willDisplay(self);
+      
         YYSentinel *sentinel = _sentinel;
         int32_t value = sentinel.value;
         BOOL (^isCancelled)(void) = ^BOOL() {
@@ -135,7 +135,7 @@ static dispatch_queue_t YYAsyncLayerGetReleaseQueue() {
                     CFRelease(image);
                 });
             }
-            if (task.didDisplay) task.didDisplay(self, YES);
+        
             CGColorRelease(backgroundColor);
             return;
         }
@@ -165,31 +165,21 @@ static dispatch_queue_t YYAsyncLayerGetReleaseQueue() {
             task.display(context, size, isCancelled);
             if (isCancelled()) {
                 UIGraphicsEndImageContext();
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (task.didDisplay) task.didDisplay(self, NO);
-                });
                 return;
             }
             UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             if (isCancelled()) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (task.didDisplay) task.didDisplay(self, NO);
-                });
                 return;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (isCancelled()) {
-                    if (task.didDisplay) task.didDisplay(self, NO);
-                } else {
+                if (isCancelled() == NO) {
                     self.contents = (__bridge id)(image.CGImage);
-                    if (task.didDisplay) task.didDisplay(self, YES);
                 }
             });
         });
     } else {
         [_sentinel increase];
-        if (task.willDisplay) task.willDisplay(self);
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, self.contentsScale);
         CGContextRef context = UIGraphicsGetCurrentContext();
         if (self.opaque) {
@@ -213,7 +203,6 @@ static dispatch_queue_t YYAsyncLayerGetReleaseQueue() {
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         self.contents = (__bridge id)(image.CGImage);
-        if (task.didDisplay) task.didDisplay(self, YES);
     }
 }
 
