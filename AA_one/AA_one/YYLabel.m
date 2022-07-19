@@ -46,7 +46,7 @@
     };
     
     CGFloat h_h = self.bounds.size.height;
-    
+    CGFloat w_w = self.bounds.size.width;
     task.display = ^(CGContextRef context, CGSize size, BOOL(^isCancelled)(void)) {
         if (isCancelled()) return;
         //在这里由于绘制文字会颠倒
@@ -54,14 +54,11 @@
             CGContextTranslateCTM(context, 0, h_h);
             CGContextScaleCTM(context, 1.0, -1.0);
         }];
-        NSAttributedString* str = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName:self->_font}];
-    //    CGContextSetTextPosition(context, 0, h_h * (-1));
-        
-        CTLineRef line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)str);
-        CTLineDraw(line, context);
+        NSAttributedString* str = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName:self->_font, NSForegroundColorAttributeName: UIColor.blueColor}];
+    //    CGContextSetTextPosition(context, 0, 250);
         
         CTFramesetterRef ref = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)str);
-        CGPathRef path = CGPathCreateWithRect(CGRectZero, nil);
+        CGPathRef path = CGPathCreateWithRect(CGRectMake(0, 0, w_w, 3000), nil);
         CTFrameRef pic = CTFramesetterCreateFrame(ref, CFRangeMake(0, 0), path, nil);
         CTFrameDraw(pic, context);
     };
