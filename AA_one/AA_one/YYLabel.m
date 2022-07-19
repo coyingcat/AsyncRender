@@ -45,15 +45,17 @@
         //...
     };
     
+    CGFloat h_h = self.bounds.size.height;
+    
     task.display = ^(CGContextRef context, CGSize size, BOOL(^isCancelled)(void)) {
         if (isCancelled()) return;
         //在这里由于绘制文字会颠倒
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            CGContextTranslateCTM(context, 0, self.bounds.size.height);
+            CGContextTranslateCTM(context, 0, h_h);
             CGContextScaleCTM(context, 1.0, -1.0);
         }];
         NSAttributedString* str = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName:self->_font}];
-        CGContextSetTextPosition(context, 0, font.pointSize);
+    //    CGContextSetTextPosition(context, 0, h_h * (-1));
         
         CTLineRef line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)str);
         CTLineDraw(line, context);
