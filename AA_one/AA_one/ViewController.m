@@ -25,7 +25,8 @@
     NSString * content = [NSString stringWithContentsOfFile: path encoding: NSUTF8StringEncoding error: nil];
     widget.text = content;
     widget.font = [UIFont systemFontOfSize: 15];
-    
+    widget.layer.borderColor = UIColor.greenColor.CGColor;
+    widget.layer.borderWidth = 1;
     
     
 }

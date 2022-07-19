@@ -49,8 +49,8 @@
         if (isCancelled()) return;
         //在这里由于绘制文字会颠倒
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        CGContextTranslateCTM(context, 0, self.bounds.size.height);
-        CGContextScaleCTM(context, 1.0, -1.0);
+            CGContextTranslateCTM(context, 0, self.bounds.size.height);
+            CGContextScaleCTM(context, 1.0, -1.0);
         }];
         NSAttributedString* str = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName:self->_font}];
         CGContextSetTextPosition(context, 0, font.pointSize);
