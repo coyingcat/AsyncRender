@@ -2600,15 +2600,14 @@ static void YYTextDrawLineStyle(CGContextRef context, CGFloat length, CGFloat li
 }
 
 static void YYTextDrawText(YYTextLayout *layout, CGContextRef context, CGSize size, CGPoint point, BOOL (^cancel)(void)) {
-    CGContextSaveGState(context); {
-        
+    CGContextSaveGState(context);
+    {
         CGContextTranslateCTM(context, point.x, point.y);
         CGContextTranslateCTM(context, 0, size.height);
         CGContextScaleCTM(context, 1, -1);
         
         BOOL isVertical = layout.container.verticalForm;
         CGFloat verticalOffset = isVertical ? (size.width - layout.container.size.width) : 0;
-        
         NSArray *lines = layout.lines;
         for (NSUInteger l = 0, lMax = lines.count; l < lMax; l++) {
             YYTextLine *line = lines[l];
@@ -2623,14 +2622,15 @@ static void YYTextDrawText(YYTextLayout *layout, CGContextRef context, CGSize si
                 CGContextSetTextPosition(context, posX, posY);
                 YYTextDrawRun(line, run, context, size, isVertical, lineRunRanges[r], verticalOffset);
             }
-            if (cancel && cancel()) break;
+            if (cancel && cancel()){
+                break;
+            }
         }
-        
         // Use this to draw frame for test/debug.
         // CGContextTranslateCTM(context, verticalOffset, size.height);
         // CTFrameDraw(layout.frame, context);
-        
-    } CGContextRestoreGState(context);
+    }
+    CGContextRestoreGState(context);
 }
 
 static void YYTextDrawBlockBorder(YYTextLayout *layout, CGContextRef context, CGSize size, CGPoint point, BOOL (^cancel)(void)) {
