@@ -51,16 +51,24 @@
         if (isCancelled()) return;
         //在这里由于绘制文字会颠倒
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            CGContextSetTextMatrix(context, CGAffineTransformIdentity);
             CGContextTranslateCTM(context, 0, h_h);
             CGContextScaleCTM(context, 1.0, -1.0);
         }];
         NSAttributedString* str = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName: fontX, NSForegroundColorAttributeName: UIColor.blueColor}];
-    //    CGContextSetTextPosition(context, 0, 250);
-        
         CTFramesetterRef ref = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)str);
         CGPathRef path = CGPathCreateWithRect(CGRectMake(0, 0, w_w, 3000), nil);
         CTFrameRef pic = CTFramesetterCreateFrame(ref, CFRangeMake(0, 0), path, nil);
-        CTFrameDraw(pic, context);
+        CFArrayRef arr = CTFrameGetLines(pic);
+        NSArray *array = (__bridge NSArray*)arr;
+        int i = 0;
+        int cnt = (int)array.count;
+        while (i < cnt) {
+            CTLineRef line = (__bridge CTLineRef)(array[i]);
+            CGContextSetTextPosition(context, 0, i * 30);
+            CTLineDraw(line, context);
+            i += 1;
+        }
     };
     
     task.didDisplay = ^(CALayer *layer, BOOL finished) {
